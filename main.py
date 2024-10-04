@@ -18,7 +18,6 @@ target_x = r.randint(0, screen_width - target_width)
 target_y = r.randint(0, screen_height - target_height)
 color = (r.randint(0,255),r.randint(0,255),r.randint(0,255))
 
-
 running = True
 while running:
     pass
