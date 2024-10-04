@@ -20,6 +20,7 @@ color = (r.randint(0,255),r.randint(0,255),r.randint(0,255))
 
 running = True
 while running:
+    screen.fill(color)
     pass
 
 pygame.quit()
