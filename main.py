@@ -118,8 +118,10 @@ while running:
     #Заливка фона
     screen.fill(color)
     #Обновляем позицию мишени
-    target_x += target_speed_x
-    target_y += target_speed_y
+    if p==0:
+        target_x += target_speed_x
+        target_y += target_speed_y
+        screen.blit(target_img, (target_x, target_y))
     #Проверяем столкновение с границами и меняем позицию мишени
     if (target_x == 0 or target_y == 0 or target_x + target_width > SCREEN_WIDTH
             or target_y + target_height > SCREEN_HEIGHT):
@@ -146,8 +148,9 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 # Убираем мишень в угол
-                target_x = 0
-                target_y = 0
+                target_speed_x = 0
+                target_speed_y = 0
+                screen.blit(target_img, (target_x, target_y))
                 p = 1
 
     # Создаем текстовые поверхности
@@ -156,9 +159,9 @@ while running:
         misses_text = font.render(f"Промахи: {misses}", True, (255, 255, 255))
         screen.blit(hits_text, (10, 10 + target_height))
         screen.blit(misses_text, (10, 50 + target_height))
-        screen.blit(target_img, (target_x, target_y))
+        #screen.blit(target_img, (target_x, target_y))
         # Проверяем выигрыш/проигрыш
-        if hits > misses:
+        if hits >= misses:
             sound_firework.play()
             # Создаем новый фейерверк в центре
             fireworks.append(Firework(400, 300))
@@ -170,7 +173,6 @@ while running:
 
     # Удаляем завершенные фейерверки
     fireworks = [fw for fw in fireworks if not fw.finished]
-    screen.blit(target_img, (target_x, target_y))
 
     #Обновление окна
     pygame.display.update()
