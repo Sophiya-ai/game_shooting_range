@@ -4,6 +4,12 @@ import random as r
 # Инициализация Pygame
 pygame.init()
 
+# Инициализация микшера
+pygame.mixer.init()
+
+#Загрузка звуков
+sound_shoot = pygame.mixer.Sound("sounds/shoot.wav")
+
 # Задаем размеры и вид окна
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -30,21 +36,21 @@ while running:
 
     #Заливка фона
     screen.fill(color)
-
     #Обновляем позицию мишени
     target_x += target_speed_x
     target_y += target_speed_y
-
     #Проверяем столкновение с границами и меняем позицию мишени
     if (target_x == 0 or target_y == 0 or target_x + target_width > SCREEN_WIDTH
             or target_y + target_height > SCREEN_HEIGHT):
         target_x = r.randint(0, SCREEN_WIDTH - target_width)
         target_y = r.randint(0, SCREEN_HEIGHT - target_height)
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
+            #Выстрел
+            sound_shoot.play()
+            #Определяем координаты позиции мышки и проверяем попадание
             mouse_x, mouse_y = pygame.mouse.get_pos()
             if target_x < mouse_x < target_x + target_width and target_y < mouse_y < target_y + target_height:
                 target_x = r.randint(0, SCREEN_WIDTH - target_width)
