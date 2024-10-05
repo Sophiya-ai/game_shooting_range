@@ -13,7 +13,7 @@ icon = pygame.image.load("img/ba.jpg")
 pygame.display.set_icon(icon)
 
 # Задаем параметры и вид мишени
-target_img = pygame.image.load("img/i.jpg")
+target_img = pygame.image.load("img/i.png")
 target_width = 50
 target_height = 50
 target_x = r.randint(0, SCREEN_WIDTH - target_width)
