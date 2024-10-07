@@ -113,6 +113,7 @@ class Firework:
 running = True
 fireworks = []
 p=0
+color_text = (r.randint(0, 255), r.randint(0, 255), r.randint(0, 255))
 while running:
 
     #Заливка фона
@@ -155,8 +156,8 @@ while running:
 
     # Создаем текстовые поверхности
     if p==1:
-        hits_text = font.render(f"Попадания: {hits}", True, (255, 255, 255))
-        misses_text = font.render(f"Промахи: {misses}", True, (255, 255, 255))
+        hits_text = font.render(f"Попадания: {hits}", True, color_text)
+        misses_text = font.render(f"Промахи: {misses}", True, color_text)
         screen.blit(hits_text, (10, 10 + target_height))
         screen.blit(misses_text, (10, 50 + target_height))
         #screen.blit(target_img, (target_x, target_y))
@@ -183,11 +184,12 @@ while running:
         running = False
 
 # Цикл ожидания закрытия окна
-waiting_for_close = True
-while waiting_for_close:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            waiting_for_close = False
+if hits < misses and p==1:
+    waiting_for_close = True
+    while waiting_for_close:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                waiting_for_close = False
 
 # Завершение Pygame
 pygame.quit()
