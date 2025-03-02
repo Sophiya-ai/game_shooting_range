@@ -1,7 +1,7 @@
 # game_shooting_range
 
 # Кейс - игра “Тир” с использованием Git и Pygame
-https://github.com/Sophiya-ai/game_shooting_range
+
 ## 6 веток:
 * **Main** - основа для игры
 * **part-const-code** – ветка с константами
